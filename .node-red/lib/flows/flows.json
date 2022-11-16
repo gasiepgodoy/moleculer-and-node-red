@@ -1,0 +1,170 @@
+[
+    {
+        "id": "b8ab6c66daae21d0",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cf34926427575c2e",
+        "type": "inject",
+        "z": "b8ab6c66daae21d0",
+        "name": "http GET http://localhost:3000/api/",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 540,
+        "wires": [
+            [
+                "53b9b032dde5c732"
+            ]
+        ]
+    },
+    {
+        "id": "53b9b032dde5c732",
+        "type": "http request",
+        "z": "b8ab6c66daae21d0",
+        "name": "greeter/hello",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "http://127.0.0.1:3000/api/greeter/hello",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "0b17e1bdfa105177"
+            ]
+        ]
+    },
+    {
+        "id": "0b17e1bdfa105177",
+        "type": "debug",
+        "z": "b8ab6c66daae21d0",
+        "name": "msg.payload 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b1a53fe8f6d3144d",
+        "type": "moleculer-call",
+        "z": "b8ab6c66daae21d0",
+        "broker": "1794b9b4ac5f9460",
+        "name": "greeter.hello",
+        "topic": "greeter.hello",
+        "options": "{}",
+        "optionsType": "json",
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "ac74a6d48425be4b"
+            ]
+        ]
+    },
+    {
+        "id": "ac74a6d48425be4b",
+        "type": "debug",
+        "z": "b8ab6c66daae21d0",
+        "name": "msg.payload 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3c4ad55f1e5cb785",
+        "type": "inject",
+        "z": "b8ab6c66daae21d0",
+        "name": "broker call",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 420,
+        "wires": [
+            [
+                "b1a53fe8f6d3144d"
+            ]
+        ]
+    },
+    {
+        "id": "dcaf77dd71e10fa0",
+        "type": "comment",
+        "z": "b8ab6c66daae21d0",
+        "name": "comunication moleculer-client to greeter-service",
+        "info": "",
+        "x": 200,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "f49403f0a69ca3cf",
+        "type": "comment",
+        "z": "b8ab6c66daae21d0",
+        "name": "comunication moleculer-api to greeter-service",
+        "info": "",
+        "x": 190,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "1794b9b4ac5f9460",
+        "type": "moleculer-config",
+        "name": "moleculer-config",
+        "options": "{\"transporter\":\"nats://localhost:4222\"}",
+        "optionsType": "json"
+    }
+]
